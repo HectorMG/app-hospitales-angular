@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./grafica1.component.css']
 })
 export class Grafica1Component {
+  
+  public tag: string[] = [ 'Download Sales', 'In-Store Sales', 'Mail-Order Sales' ];
+  public informacion = [{ data: [350, 450, 100] }]
+  public titulo = 'Ventas';
 
 }
