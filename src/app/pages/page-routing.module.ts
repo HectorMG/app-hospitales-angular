@@ -7,6 +7,7 @@ import { ProgessComponent } from './progess/progess.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,8 @@ const routes: Routes = [
         { path: 'grafica1', component: Grafica1Component,  data: {titulo: 'Gráfica'} },
         { path: 'account-settings', component: AccountSettingsComponent,  data: {titulo: 'Tema'}},
         { path: 'rxjs', component: RxjsComponent,  data: {titulo: 'Rjxs'}},
+        { path: 'perfil', component: ProfileComponent,  data: {titulo: 'Mi Perfil'}},
+
       ]
     },
 ];
