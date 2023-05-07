@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.development';
 import { loginForm } from '../interfaces/login-form.interface';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario.model';
 
 const base_url = environment.base_url;
 declare const google: any;
@@ -15,7 +16,7 @@ declare const google: any;
   providedIn: 'root'
 })
 export class UsuarioService {
-
+  public usuario: Usuario;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -45,10 +46,20 @@ export class UsuarioService {
         'x-token': token
       }
     }).pipe(
-      tap( (resp:any) =>{
-        localStorage.setItem('token',resp.token)
+      map( (resp:any) =>{
+        const {
+          nombre,
+          email,
+          role,
+          google,
+          imag,
+          uid
+        } = resp.usuario;
+
+        this.usuario = new Usuario(nombre,email, '', imag, role, google, uid)
+        localStorage.setItem('token',resp.token);
+        return true
       } ),
-      map( resp => true),
       catchError( error => of(false) )
     );
   }
@@ -57,7 +68,7 @@ export class UsuarioService {
     localStorage.removeItem('token');
 
     google.accounts.id.revoke('hector980715@gmail.com', () => {})
-    
+
     this.router.navigateByUrl('/login');
 
   }

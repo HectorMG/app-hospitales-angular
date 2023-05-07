@@ -9,9 +9,9 @@
             class="has-arrow waves-effect waves-dark"
             href="#"
             aria-expanded="false"
-            ><img src="./assets/images/users/profile.png" alt="user" /><span
+            ><img [src]="usuario.getImagen()" alt="user" /><span
               class="hide-menu"
-              >Steave Jobs
+              >{{ usuario.nombre }}
             </span></a
           >
           <ul aria-expanded="false" class="collapse">
