@@ -20,6 +20,11 @@ export class UsuarioService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  getToken(): string{
+    const token = localStorage.getItem('token') || '';
+    return token;
+  }
+
   crearUsuario( data: registerForm ){
     return this.http.post(`${base_url}/usuarios`,data).pipe(tap( (resp:any) => {
       localStorage.setItem('token',resp.token)
@@ -39,24 +44,23 @@ export class UsuarioService {
   }
 
   validarToken(): Observable<boolean>{
-    const token = localStorage.getItem('token') || '';
 
     return this.http.get(`${base_url}/auth/renew`,{
       headers: {
-        'x-token': token
+        'x-token': this.getToken()
       }
     }).pipe(
       map( (resp:any) =>{
         const {
           nombre,
           email,
-          role,
+          rol,
           google,
           imag,
           uid
         } = resp.usuario;
-
-        this.usuario = new Usuario(nombre,email, '', imag, role, google, uid)
+        this.usuario = new Usuario(nombre,email, '', imag, rol, google, uid)
+        
         localStorage.setItem('token',resp.token);
         return true
       } ),
@@ -70,6 +74,24 @@ export class UsuarioService {
     google.accounts.id.revoke('hector980715@gmail.com', () => {})
 
     this.router.navigateByUrl('/login');
+
+  }
+
+  actualizarUsuario(data:any){
+
+    data = {
+      ...data,
+      rol: this.usuario.role
+    }
+
+    console.log(data);
+    
+
+    return this.http.put(`${base_url}/usuarios/${this.usuario.uid}`,data, {
+      headers:{
+        'x-token': this.getToken()
+      }
+    });
 
   }
 
