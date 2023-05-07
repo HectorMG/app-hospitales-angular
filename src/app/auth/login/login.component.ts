@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -22,7 +22,7 @@ export class LoginComponent implements AfterViewInit{
     remember: [false]
   });
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private usuariosService: UsuarioService ){
+  constructor(private router: Router, private formBuilder: FormBuilder, private usuariosService: UsuarioService, private ngZone: NgZone ){
 
   }
 
@@ -46,7 +46,9 @@ export class LoginComponent implements AfterViewInit{
 
   handleCredentialResponse(response:any){
     this.usuariosService.loginGoogle(response.credential).subscribe(
-      resp => this.router.navigateByUrl('/'),
+      resp => this.ngZone.run(()=>{
+        this.router.navigateByUrl('/')
+      }),
       error => console.log(error)
     );
   }

@@ -5,7 +5,11 @@ import { environment } from 'src/environments/environment.development';
 import { loginForm } from '../interfaces/login-form.interface';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
+
 const base_url = environment.base_url;
+declare const google: any;
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +55,11 @@ export class UsuarioService {
 
   logout() {
     localStorage.removeItem('token');
+
+    google.accounts.id.revoke('hector980715@gmail.com', () => {})
+    
     this.router.navigateByUrl('/login');
+
   }
 
 }
