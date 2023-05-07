@@ -46,7 +46,7 @@ export class LoginComponent implements AfterViewInit{
 
   handleCredentialResponse(response:any){
     this.usuariosService.loginGoogle(response.credential).subscribe(
-      resp => console.log(resp),
+      resp => this.router.navigateByUrl('/'),
       error => console.log(error)
     );
   }
