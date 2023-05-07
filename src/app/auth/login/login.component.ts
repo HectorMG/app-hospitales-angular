@@ -15,8 +15,9 @@ export class LoginComponent {
   public formularioEnviado = false;
 
   public loginForm = this.formBuilder.group({
-    email: ['',[ Validators.required, Validators.email]],
-    password: ['',Validators.required]
+    email: [ localStorage.getItem('email') || '',[ Validators.required, Validators.email]],
+    password: ['',Validators.required],
+    remember: [false]
   });
 
   constructor(private router: Router, private formBuilder: FormBuilder, private usuariosService: UsuarioService ){
@@ -42,6 +43,14 @@ export class LoginComponent {
     this.usuariosService.login(this.loginForm.getRawValue()).subscribe(
       data => {
         console.log(data);
+
+        if (this.loginForm.get('remember').value) {
+          localStorage.setItem('email',this.loginForm.get('email').value)
+        }else{
+          localStorage.removeItem('email')
+        }
+
+
         this.router.navigateByUrl('/');
       },
       error=>{
