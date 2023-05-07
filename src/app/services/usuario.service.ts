@@ -84,9 +84,6 @@ export class UsuarioService {
       rol: this.usuario.role
     }
 
-    console.log(data);
-    
-
     return this.http.put(`${base_url}/usuarios/${this.usuario.uid}`,data, {
       headers:{
         'x-token': this.getToken()

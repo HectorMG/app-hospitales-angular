@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -31,6 +32,10 @@ export class ProfileComponent {
         const {nombre, email} = this.updateForm.value
         this.usuario.email = email;
         this.usuario.nombre = nombre;
+        Swal.fire('Guardado','Se grabaron los cambios', 'success')
+      },
+      error => {
+        Swal.fire('Error',error.error.msg, 'error')
       }
     );
   }
@@ -54,7 +59,11 @@ export class ProfileComponent {
   subirImagen(){
     this.fileUpload.actualizarFoto('usuarios',this.imagen,this.usuario.uid).subscribe(
       (res:string) => {
-        this.usuario.imag = res
+        this.usuario.imag = res;
+        Swal.fire('Guardado','Imagen de usuario actualizada', 'success')
+      },
+      error=>{
+        Swal.fire('Error',error.error.msg, 'error')
       }
     );
   }
