@@ -16,7 +16,7 @@
                         <label for="exampleInputEmail1">Email address</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" formControlName="email">
+                            <input type="email" [readonly]="usuario.google" class="form-control" id="exampleInputEmail1" placeholder="Enter email" formControlName="email">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success btn-block waves-effect waves-light m-r-10">Guardar</button>
