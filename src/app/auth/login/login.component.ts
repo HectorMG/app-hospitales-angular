@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
 
+declare const google: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: [ './login.component.css'  ]
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit{
 
+  @ViewChild('googleBtn') googleBtn : ElementRef
 
   public formularioEnviado = false;
 
@@ -24,6 +26,31 @@ export class LoginComponent {
 
   }
 
+
+  ngAfterViewInit(): void {
+    this.googleInit();
+  }
+
+  googleInit(){
+    google.accounts.id.initialize({
+      client_id: "102872700197-v7cjg5noqh5j0d7deg5ermfqbthgmlba.apps.googleusercontent.com",
+      callback: response =>  this.handleCredentialResponse(response)
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" }  // customization attributes
+    );
+    google.accounts.id.prompt(); // also display the One Tap dialog
+  }
+
+
+  handleCredentialResponse(response:any){
+    this.usuariosService.loginGoogle(response.credential).subscribe(
+      resp => console.log(resp),
+      error => console.log(error)
+    );
+  }
+
   campoValido(campo:string){
     if (this.loginForm.get(campo).invalid  && this.formularioEnviado) {
       return true;
@@ -33,7 +60,6 @@ export class LoginComponent {
   }
 
   login(){
-    console.log(this.loginForm.value);
     this.formularioEnviado = true;
 
     if (this.loginForm.invalid) {
@@ -49,8 +75,6 @@ export class LoginComponent {
         }else{
           localStorage.removeItem('email')
         }
-
-
         this.router.navigateByUrl('/');
       },
       error=>{
