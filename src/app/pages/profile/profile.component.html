@@ -31,13 +31,19 @@
                 <h4 class="card-title">Imagen de usuario</h4>
                 <h6 class="card-subtitle">Avatar</h6>
 
-                <img src="" alt="">
+                <div class="text-center mt-5">
+                    <img  *ngIf="!imgTemp" [src]="usuario.getImagen()" class="img-avatar" alt="">
+                    <img *ngIf="imgTemp" [src]="imgTemp" class="img-avatar" alt="">
 
-                <input type="file" name="" id="">
+
+                </div>
+
+
+                <input (change)="cambiarImagen($event)" type="file" name="" id="">
 
                 <br>
                 <br>
-                <button  class="btn btn-success btn-block waves-effect waves-light m-r-10">Cambiar Imagen</button>
+                <button [disabled]="!imagen" (click)="subirImagen()" class="btn btn-success btn-block waves-effect waves-light m-r-10">Cambiar Imagen</button>
 
             </div>
         </div>
