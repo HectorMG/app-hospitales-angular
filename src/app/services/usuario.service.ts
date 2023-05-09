@@ -81,7 +81,7 @@ export class UsuarioService {
 
     data = {
       ...data,
-      rol: this.usuario.role
+      rol: this.usuario.rol
     }
 
     return this.http.put(`${base_url}/usuarios/${this.usuario.uid}`,data, {
@@ -90,6 +90,27 @@ export class UsuarioService {
       }
     });
 
+  }
+
+  obtenerUsuarios(desde: number = 0){
+
+    const url = `${base_url}/usuarios?desde=${desde}`;
+
+    return this.http.get<{total:number,usuarios:Usuario[]} >(url, {
+      headers:{
+        'x-token': this.getToken()
+      }
+    }).pipe(
+      map( resp => {
+        const usuarios = resp.usuarios.map( user => new Usuario(user.nombre, user.email, '', user.imag, user.rol, user.google, user.uid))
+
+        return {
+          total: resp.total,
+          usuarios
+        }
+
+      } )
+    )
   }
 
 }

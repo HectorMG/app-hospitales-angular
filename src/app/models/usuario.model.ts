@@ -8,14 +8,16 @@ export class Usuario {
     public email: string,
     public password: string,
     public imag?: string,
-    public role?: string,
+    public rol?: string,
     public google?: boolean,
     public uid?: string
   ) {}
 
   getImagen(){
 
-    if (this.google) {
+    if (!this.imag)  return `${base_url}/upload/usuarios/no-image`
+
+    if (this.imag.includes('https')) {
       return this.imag;
     }
 
