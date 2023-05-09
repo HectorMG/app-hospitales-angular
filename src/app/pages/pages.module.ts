@@ -11,6 +11,9 @@ import { ComponentsModule } from '../components/components.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsuariosComponent } from './gestion/usuarios/usuarios.component';
+import { HospitalesComponent } from './gestion/hospitales/hospitales.component';
+import { MedicosComponent } from './gestion/medicos/medicos.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { ProfileComponent } from './profile/profile.component';
     PagesComponent,
     AccountSettingsComponent,
     RxjsComponent,
-    ProfileComponent
+    ProfileComponent,
+    UsuariosComponent,
+    HospitalesComponent,
+    MedicosComponent
   ],
   imports: [
     CommonModule,

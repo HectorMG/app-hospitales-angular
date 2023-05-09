@@ -8,6 +8,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { UsuariosComponent } from './gestion/usuarios/usuarios.component';
+import { HospitalesComponent } from './gestion/hospitales/hospitales.component';
+import { MedicosComponent } from './gestion/medicos/medicos.component';
 
 
 const routes: Routes = [
@@ -22,6 +25,12 @@ const routes: Routes = [
         { path: 'account-settings', component: AccountSettingsComponent,  data: {titulo: 'Tema'}},
         { path: 'rxjs', component: RxjsComponent,  data: {titulo: 'Rjxs'}},
         { path: 'perfil', component: ProfileComponent,  data: {titulo: 'Mi Perfil'}},
+
+        { path: 'usuarios', component: UsuariosComponent,  data: {titulo: 'Usuarios'}},
+        { path: 'hospitales', component: HospitalesComponent,  data: {titulo: 'Hospitales'}},
+        { path: 'medicos', component: MedicosComponent,  data: {titulo: 'Médicos'}},
+
+
 
       ]
     },

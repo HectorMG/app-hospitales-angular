@@ -16,6 +16,16 @@ export class SidebarService {
 
       ]
     },
+    {
+      titulo: 'Gestión',
+      icono: 'mdi mdi-folder-lock-open',
+      subMenu: [
+        { titulo: 'Usuarios', url: 'usuarios'},
+        { titulo: 'Hospitales', url: 'hospitales'},
+        { titulo: 'Médicos', url: 'medicos'},
+
+      ]
+    },
   ]
   constructor() { }
 }
