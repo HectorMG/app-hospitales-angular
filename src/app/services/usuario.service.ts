@@ -108,9 +108,7 @@ export class UsuarioService {
           total: resp.total,
           usuarios
         }
-
-      } )
+      })
     )
   }
-
 }

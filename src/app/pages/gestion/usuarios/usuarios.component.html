@@ -4,7 +4,7 @@
             <div class="card-body">
 
                 
-                <input type="text" class="form-control" placeholder="Busqueda">
+                <input type="text" class="form-control" placeholder="Busqueda" #busqueda (keyup)="buscarUsuario(busqueda.value)" >
 
             </div>
         </div>
