@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 
 @Component({
   selector: 'app-model-imagen',
@@ -6,12 +7,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./model-imagen.component.css']
 })
 export class ModelImagenComponent {
+  public imagen: File;
+  public imgTemp: any = '';
 
-  public ocultarModal: boolean = false;
-
+  constructor(public modalImagenService: ModalImagenService ){}
 
   cerrarModal(){
-    this.ocultarModal = true;
+    this.imgTemp = null;
+    this.modalImagenService.cerrarModal();
+  }
+
+  cambiarImagen(event){
+    this.imagen = event.target.files[0]; 
+
+    if (!this.imagen) {
+      return this.imgTemp = null;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(this.imagen);
+
+    reader.onloadend = () => {
+      this.imgTemp = reader.result
+    }
+
   }
 
 }

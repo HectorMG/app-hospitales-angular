@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { BusquedasService } from 'src/app/services/busquedas.service';
+import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
 
@@ -17,7 +18,7 @@ export class UsuariosComponent implements OnInit {
   public totalUsuarios: number = 0;
   public desde: number = 0;
 
-  constructor(private usuarioService: UsuarioService, private busquedaService: BusquedasService){}
+  constructor(private usuarioService: UsuarioService, private busquedaService: BusquedasService, private imagenModalService : ModalImagenService){}
 
   ngOnInit(): void {
     this.obtenerUsuarios();
@@ -103,6 +104,10 @@ export class UsuariosComponent implements OnInit {
         Swal.fire('Error', 'No se pudo actualizar el usuario','error');
       }
     )
+  }
+
+  abrirModal(usuario: Usuario){
+    this.imagenModalService.abrirModal('usuarios',usuario.uid,usuario.imag);
   }
 
 }

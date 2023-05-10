@@ -1,4 +1,4 @@
-<div class="fondo-modal animate fadeIn fast" [class.oculto]="ocultarModal">
+<div class="fondo-modal animate fadeIn fast" [class.oculto]="modalImagenService.ocultarModal">
     <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: block; padding-right: 15px;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -9,6 +9,17 @@
                 <div class="modal-body">
     
                     <h3>Seleccione una imagen</h3>
+
+                    <div class="text-center mt-5">
+                        <img  *ngIf="!imgTemp" [src]="modalImagenService.img" class="img-avatar" alt="">
+                        <img *ngIf="imgTemp" [src]="imgTemp" class="img-avatar" alt="">
+    
+    
+                    </div>
+    
+    
+                    <input (change)="cambiarImagen($event)" type="file" name="" id="">
+
                 </div>
                 <div class="modal-footer">
                     <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

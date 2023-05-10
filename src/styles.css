@@ -21,3 +21,9 @@
     width: 50px;
     border-radius: 100%;
 }
+
+.img-avatar{
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+}
