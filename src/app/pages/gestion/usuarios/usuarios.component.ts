@@ -95,4 +95,14 @@ export class UsuariosComponent implements OnInit {
       }
     })
   }
+
+  cambiarRole(usuario:Usuario){
+    this.usuarioService.editarUsuario(usuario).subscribe(
+      ()=>{},
+      error => {
+        Swal.fire('Error', 'No se pudo actualizar el usuario','error');
+      }
+    )
+  }
+
 }

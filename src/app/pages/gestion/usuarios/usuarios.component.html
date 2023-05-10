@@ -37,14 +37,21 @@
                                 </td>
                                 <td>{{ usuario.email }}</td>
                                 <td>{{ usuario.nombre }}</td>
-                                <td>{{ usuario.rol }}</td>
+
+                                <td>
+                                    <select name="" id="" class="form-control w140"
+                                    [(ngModel)]="usuario.rol"
+                                    (change)="cambiarRole(usuario)">
+                                        <option value="ADMIN_ROLE">Admin</option>
+                                        <option value="USER_ROLE">User</option>
+                                    </select>
+                                </td>
                                 <td class="text-center">
                                     <span *ngIf="usuario.google" class="label label-danger">google</span>
                                     <span *ngIf="!usuario.google" class="label label-info">Normal</span>
                                 </td>
 
                                 <td class="text-nowrap">
-                                    <a class="cursor" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                     <a class="cursor" data-toggle="tooltip" (click)="eliminarUsuario(usuario.uid)" data-original-title="Eliminar"> <i class="fa fa-close text-danger"></i> </a>
                                 </td>
                             </tr>

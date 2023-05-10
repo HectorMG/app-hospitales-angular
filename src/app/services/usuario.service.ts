@@ -63,7 +63,7 @@ export class UsuarioService {
         
         localStorage.setItem('token',resp.token);
         return true
-      }),
+      } ),
       catchError( error => of(false) )
     );
   }
@@ -120,5 +120,14 @@ export class UsuarioService {
       }
     });
 
+  }
+
+  editarUsuario(usuario: Usuario){
+
+    return this.http.put(`${base_url}/usuarios/${usuario.uid}`,usuario, {
+      headers:{
+        'x-token': this.getToken()
+      }
+    });
   }
 }
