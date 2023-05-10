@@ -1,0 +1,13 @@
+.fondo-modal{
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+}
+
+.oculto{
+    display: none;
+}

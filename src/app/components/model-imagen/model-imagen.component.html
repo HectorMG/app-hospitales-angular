@@ -1,0 +1,20 @@
+<div class="fondo-modal animate fadeIn fast" [class.oculto]="ocultarModal">
+    <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: block; padding-right: 15px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel1">Cambiar Imagen</h4>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+    
+                    <h3>Seleccione una imagen</h3>
+                </div>
+                <div class="modal-footer">
+                    <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
