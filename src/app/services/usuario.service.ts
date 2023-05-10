@@ -63,7 +63,7 @@ export class UsuarioService {
         
         localStorage.setItem('token',resp.token);
         return true
-      } ),
+      }),
       catchError( error => of(false) )
     );
   }
@@ -110,5 +110,15 @@ export class UsuarioService {
         }
       })
     )
+  }
+
+  eliminarUsuario(uid:string){
+
+    return this.http.delete(`${base_url}/usuarios/${uid}`,{
+      headers:{
+        'x-token': this.getToken()
+      }
+    });
+
   }
 }
