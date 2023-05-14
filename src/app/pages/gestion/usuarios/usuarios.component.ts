@@ -66,7 +66,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       return this.usuarios = this.usuariosTemp
     }
 
-    this.busquedaService.buscarUsuario('usuarios',busqueda).subscribe(
+    this.busquedaService.buscarColeccion('usuarios',busqueda).subscribe(
       resp => {
         const usuarios = resp.map( user => new Usuario(user.nombre, user.email, '', user.imag, user.rol, user.google, user.uid))
         this.usuarios = usuarios

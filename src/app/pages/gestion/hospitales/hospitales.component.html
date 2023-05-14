@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <input type="text" class="form-control" placeholder="Busqueda">
+                <input type="text" class="form-control" [(ngModel)]="busqueda" (keyup)="buscarHospital()" placeholder="Busqueda">
             </div>
         </div>
     </div>
@@ -44,8 +44,8 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let hospital of hospitales">
-                                <td class="text-center">
-                                    <img (click)="abrirModal(hospital)" class="avatar cursor" [src]="hospital.img | imagen:'hospitales'" [alt]="hospital.nombre">
+                                <td class="text-center w100">
+                                    <img (click)="abrirModal(hospital)" class="w100 cursor" [src]="hospital.img | imagen:'hospitales'" [alt]="hospital.nombre">
                                 </td>
                                 <td>
                                     <input type="text" [(ngModel)]="hospital.nombre" class="form-control">

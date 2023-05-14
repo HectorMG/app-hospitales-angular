@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, delay } from 'rxjs';
 import { Hospital } from 'src/app/models/Hospital.model';
+import { BusquedasService } from 'src/app/services/busquedas.service';
 import { HospitalesService } from 'src/app/services/hospitales.service';
 import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 import Swal from 'sweetalert2';
@@ -13,13 +14,16 @@ import Swal from 'sweetalert2';
 export class HospitalesComponent implements OnInit, OnDestroy {
 
   public hospitales: Hospital[];
+  public hospitalesTemp: Hospital[];
   public total: number = 0;
   public desde: number = 0;
 
   public imgSubs: Subscription;
 
+  public busqueda: string;
 
-  constructor(private hospitalesService: HospitalesService, private imagenModalService: ModalImagenService){}
+
+  constructor(private hospitalesService: HospitalesService, private imagenModalService: ModalImagenService, private busquedaService: BusquedasService){}
 
   ngOnDestroy(): void {
     this.imgSubs.unsubscribe;
@@ -40,6 +44,7 @@ export class HospitalesComponent implements OnInit, OnDestroy {
       ({hospitales, total}) => {
         this.total = total
         this.hospitales = hospitales;
+        this.hospitalesTemp = hospitales;
       }
     );
   }
@@ -76,7 +81,7 @@ export class HospitalesComponent implements OnInit, OnDestroy {
   }
 
   async abrirSweetAlert(){
-    const { value } = await Swal.fire<string>({
+    const { value = '' } = await Swal.fire<string>({
       input: 'text',
       title: 'Crear Hospital',
       text: 'Ingrese el nombre del nuevo hospital',
@@ -97,6 +102,19 @@ export class HospitalesComponent implements OnInit, OnDestroy {
 
   abrirModal(hospital: Hospital){
     this.imagenModalService.abrirModal('hospitales',hospital._id,hospital.img);
+  }
+
+
+  buscarHospital(){
+    if (this.busqueda.length===0) {
+      this.hospitales = this.hospitalesTemp;
+      return;
+    }
+    this.busquedaService.buscarColeccion('hospitales', this.busqueda).subscribe(
+      resp=>{
+        this.hospitales = resp
+      }
+    );
   }
 
 }

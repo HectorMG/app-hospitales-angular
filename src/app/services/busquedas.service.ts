@@ -18,7 +18,7 @@ export class BusquedasService {
     return token;
   }
 
-  buscarUsuario(tipo:string, busqueda: string){
+  buscarColeccion(tipo:string, busqueda: string){
 
     const url = `${base_url}/busqueda/coleccion/${tipo}/${busqueda}`;
     return this.http.get<any[]>(url,{
