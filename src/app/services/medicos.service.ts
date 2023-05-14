@@ -39,6 +39,7 @@ export class MedicosService {
   }
 
   actualizarMedico(medico: Medico){
+
     const url = `${base_url}/medicos/${medico._id}`
 
     return this.http.put(url,medico,{
@@ -57,6 +58,20 @@ export class MedicosService {
         'x-token': localStorage.getItem('token')
       }
     })
+  }
+
+  obtenerMedico(id: string){
+
+    return this.http.get(`${base_url}/medicos/${id}`,{
+      headers:{
+        'x-token': localStorage.getItem('token')
+      }
+    }).pipe(
+      map(
+        (resp: {ok:boolean, medico: Medico}) => resp.medico
+      )
+    );
+
   }
 
 }
