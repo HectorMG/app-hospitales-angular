@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './gestion/usuarios/usuarios.component';
 import { HospitalesComponent } from './gestion/hospitales/hospitales.component';
 import { MedicosComponent } from './gestion/medicos/medicos.component';
+import { MedicoComponent } from './gestion/medicos/medico/medico.component';
 
 
 const routes: Routes = [
@@ -29,9 +30,7 @@ const routes: Routes = [
         { path: 'usuarios', component: UsuariosComponent,  data: {titulo: 'Usuarios'}},
         { path: 'hospitales', component: HospitalesComponent,  data: {titulo: 'Hospitales'}},
         { path: 'medicos', component: MedicosComponent,  data: {titulo: 'Médicos'}},
-
-
-
+        { path: 'medico/:id', component: MedicoComponent,  data: {titulo: 'Detalle Médico'}},
       ]
     },
 ];
