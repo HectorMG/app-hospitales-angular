@@ -14,7 +14,7 @@ export class HospitalesService {
   constructor(private http: HttpClient) { }
 
   obtenerHospitales(desde:number){
-    return this.http.get(`${base_url}/hospitales?${desde}`,{
+    return this.http.get(`${base_url}/hospitales?desde=${desde}`,{
       headers:{
         'x-token': localStorage.getItem('token')
       }
@@ -34,7 +34,29 @@ export class HospitalesService {
 
     const url = `${base_url}/hospitales`
 
-    return this.http.post(url,nombre,{
+    return this.http.post(url,{nombre:nombre},{
+      headers:{
+        'x-token': localStorage.getItem('token')
+      }
+    })
+  }
+
+  actualizarHospital(hospital:Hospital){
+
+    const url = `${base_url}/hospitales/${hospital._id}`
+
+    return this.http.put(url,hospital,{
+      headers:{
+        'x-token': localStorage.getItem('token')
+      }
+    })
+  }
+
+  eliminarHospital(hospital:Hospital){
+
+    const url = `${base_url}/hospitales/${hospital._id}`
+
+    return this.http.delete(url,{
       headers:{
         'x-token': localStorage.getItem('token')
       }

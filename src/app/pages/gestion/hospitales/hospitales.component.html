@@ -2,10 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
-                
                 <input type="text" class="form-control" placeholder="Busqueda">
-
             </div>
         </div>
     </div>
@@ -15,8 +12,27 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Hospitales</h4>
-                <h6 class="card-subtitle">Hospitales registrados {{ total }}</h6>
+
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Hospitales</h4>
+                        <h6 class="card-subtitle">
+                            Hospitales registrados {{ total }}
+        
+                        </h6>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="text-right">
+                            <button (click)="abrirSweetAlert()" class="btn btn-primary">
+                                <i class="fa fa-hospital-o"></i>
+                                Crear Hospital
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -35,9 +51,13 @@
                                     <input type="text" [(ngModel)]="hospital.nombre" class="form-control">
                                 </td>
 
-                                <td class="text-nowrap text-center">
-                                    <a href="#" data-toggle="tooltip" data-original-title="Guardar"> <i class="fa fa-save  m-r-10"></i> </a>
-                                    <a href="#" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger"></i> </a>
+                                <td class="text-nowrap text-center w100">
+                                    <a class="cursor" (click)="actualizarHospital(hospital)" data-toggle="tooltip" data-original-title="Guardar"> 
+                                        <i class="fa fa-save  m-r-10"></i> 
+                                    </a>
+                                    <a class="cursor" (click)="eliminarHospital(hospital)" data-toggle="tooltip" data-original-title="Eliminar">
+                                         <i class="fa fa-close text-danger"></i> 
+                                    </a>
                                 </td>
                             </tr>
                            
