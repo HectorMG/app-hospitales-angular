@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 
 const base_url = environment.base_url;
@@ -12,6 +12,8 @@ export class ModalImagenService {
   public tipo: string;
   public id: string;
   public img?: string;
+
+  public nuevaImagen: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
