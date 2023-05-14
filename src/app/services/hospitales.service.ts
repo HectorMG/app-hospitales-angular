@@ -13,7 +13,7 @@ export class HospitalesService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerHospitales(desde:number){
+  obtenerHospitales(desde:number = 0){
     return this.http.get(`${base_url}/hospitales?desde=${desde}`,{
       headers:{
         'x-token': localStorage.getItem('token')
