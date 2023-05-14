@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Hospital } from 'src/app/models/Hospital.model';
+import { Medico } from 'src/app/models/Medico.model';
 import { HospitalesService } from 'src/app/services/hospitales.service';
 import { MedicosService } from 'src/app/services/medicos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-medico',
@@ -14,9 +17,14 @@ export class MedicoComponent implements OnInit {
 
   public medicoForm: FormGroup;
   public hospitales: Hospital[];
-  public hospitalSeleccionado: Hospital;
 
-  constructor(private formBuilder: FormBuilder, private hospitalService: HospitalesService, private medicoService: MedicosService){
+  public hospitalSeleccionado: Hospital;
+  public medicoSeleccionado: Medico;
+
+
+  constructor(private formBuilder: FormBuilder, private hospitalService: HospitalesService,
+     private medicoService: MedicosService,
+     private router: Router){
 
     this.medicoForm = this.formBuilder.group({
       nombre: ['House', Validators.required],
@@ -48,7 +56,8 @@ export class MedicoComponent implements OnInit {
 
     this.medicoService.crearMedico(this.medicoForm.value).subscribe(
       (resp) => {
-        console.log(resp);
+        Swal.fire('Creado', this.medicoForm.get('nombre').value, 'success');
+        this.router.navigateByUrl('/dashboard/medicos');
       }
     );
   }

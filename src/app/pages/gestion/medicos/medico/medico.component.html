@@ -5,11 +5,11 @@
                 <h4 class="card-title">Nuevo Médico</h4>
                 <h6 class="card-subtitle">Actualizar Información</h6>
 
-                <div class="form-group row" *ngIf="true">
+                <div class="form-group row" *ngIf="medicoSeleccionado">
                     <label for="exampleInputuname3" class="col-sm-3 control-label">Foto</label>
                     <div class="col-sm-9">
                         <div class="input-group">
-                            <img src="http://localhost:4500/api/upload/hospitales/4366412a-60af-4ae1-b2a6-82a2d16a1a1b.jpeg" class="w200">
+                            <img [src]="medicoSeleccionado.img | imagen : 'medicos' " class="w200">
                         </div>
                     </div>
                 </div>
