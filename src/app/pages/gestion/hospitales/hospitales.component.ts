@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription, delay } from 'rxjs';
 import { Hospital } from 'src/app/models/Hospital.model';
 import { HospitalesService } from 'src/app/services/hospitales.service';
+import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,16 +10,29 @@ import Swal from 'sweetalert2';
   templateUrl: './hospitales.component.html',
   styleUrls: ['./hospitales.component.css']
 })
-export class HospitalesComponent implements OnInit {
+export class HospitalesComponent implements OnInit, OnDestroy {
 
   public hospitales: Hospital[];
   public total: number = 0;
   public desde: number = 0;
 
-  constructor(private hospitalesService: HospitalesService){}
+  public imgSubs: Subscription;
+
+
+  constructor(private hospitalesService: HospitalesService, private imagenModalService: ModalImagenService){}
+
+  ngOnDestroy(): void {
+    this.imgSubs.unsubscribe;
+  }
 
   ngOnInit(): void {
     this.obtenerHospitales();
+
+    this.imgSubs = this.imagenModalService.nuevaImagen.pipe(
+      delay(1000)
+    ).subscribe(img=>{
+      this.obtenerHospitales();
+    })
   }
 
   obtenerHospitales(){
@@ -78,6 +93,10 @@ export class HospitalesComponent implements OnInit {
       );
     }
     
+  }
+
+  abrirModal(hospital: Hospital){
+    this.imagenModalService.abrirModal('hospitales',hospital._id,hospital.img);
   }
 
 }
