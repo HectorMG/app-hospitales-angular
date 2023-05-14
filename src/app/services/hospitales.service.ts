@@ -29,4 +29,15 @@ export class HospitalesService {
       )
     );
   }
+
+  crearHospital(nombre:string){
+
+    const url = `${base_url}/hospitales`
+
+    return this.http.post(url,nombre,{
+      headers:{
+        'x-token': localStorage.getItem('token')
+      }
+    })
+  }
 }

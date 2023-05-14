@@ -14,6 +14,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './gestion/usuarios/usuarios.component';
 import { HospitalesComponent } from './gestion/hospitales/hospitales.component';
 import { MedicosComponent } from './gestion/medicos/medicos.component';
+import { imagenPipe } from '../pipes/imagen.pipe';
+
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { MedicosComponent } from './gestion/medicos/medicos.component';
     ProfileComponent,
     UsuariosComponent,
     HospitalesComponent,
-    MedicosComponent
+    MedicosComponent,
+    imagenPipe
   ],
   imports: [
     CommonModule,

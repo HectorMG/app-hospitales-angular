@@ -28,7 +28,9 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let hospital of hospitales">
-                                <td>Lunar probe project</td>
+                                <td class="text-center">
+                                    <img  class="avatar cursor" [src]="hospital.img | imagen:'hospitales'" [alt]="hospital.nombre">
+                                </td>
                                 <td>
                                     <input type="text" [(ngModel)]="hospital.nombre" class="form-control">
                                 </td>
