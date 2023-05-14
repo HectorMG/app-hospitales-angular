@@ -10,7 +10,7 @@ import { HospitalesService } from 'src/app/services/hospitales.service';
 export class HospitalesComponent implements OnInit {
 
   public hospitales: Hospital[];
-  public total: number;
+  public total: number = 0;
   public desde: number = 0;
 
   constructor(private hospitalesService: HospitalesService){}

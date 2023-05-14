@@ -16,7 +16,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Hospitales</h4>
-                <h6 class="card-subtitle">Hospitales registrados</h6>
+                <h6 class="card-subtitle">Hospitales registrados {{ total }}</h6>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -30,11 +30,11 @@
                             <tr *ngFor="let hospital of hospitales">
                                 <td>Lunar probe project</td>
                                 <td>
-                                    <input type="text" [value]="hospital.nombre" class="form-control">
+                                    <input type="text" [(ngModel)]="hospital.nombre" class="form-control">
                                 </td>
 
                                 <td class="text-nowrap text-center">
-                                    <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                    <a href="#" data-toggle="tooltip" data-original-title="Guardar"> <i class="fa fa-save  m-r-10"></i> </a>
                                     <a href="#" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger"></i> </a>
                                 </td>
                             </tr>
