@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { delay, pipe } from 'rxjs';
 import { Hospital } from 'src/app/models/Hospital.model';
 import { Medico } from 'src/app/models/Medico.model';
 import { HospitalesService } from 'src/app/services/hospitales.service';
@@ -52,7 +53,12 @@ export class MedicoComponent implements OnInit {
   }
 
   cargarMedico(id: string){
-    this.medicoService.obtenerMedico(id).subscribe(
+
+    if (id==='nuevo') {
+      return;
+    }
+
+    this.medicoService.obtenerMedico(id).pipe(delay(100)).subscribe(
       ( medico ) => {
         const {nombre, hospital} = medico;
         console.log(hospital);
