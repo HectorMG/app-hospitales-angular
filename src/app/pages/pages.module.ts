@@ -16,6 +16,7 @@ import { HospitalesComponent } from './gestion/hospitales/hospitales.component';
 import { MedicosComponent } from './gestion/medicos/medicos.component';
 import { imagenPipe } from '../pipes/imagen.pipe';
 import { MedicoComponent } from './gestion/medicos/medico/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 
@@ -32,7 +33,8 @@ import { MedicoComponent } from './gestion/medicos/medico/medico.component';
     HospitalesComponent,
     MedicosComponent,
     imagenPipe,
-    MedicoComponent
+    MedicoComponent,
+    BusquedaComponent
   ],
   imports: [
     CommonModule,

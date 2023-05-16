@@ -18,6 +18,15 @@ export class BusquedasService {
     return token;
   }
 
+  busquedaGeneral(termino: string){
+    return this.http.get(`${base_url}/busqueda/${termino}`, {
+      headers:{
+        'x-token': this.getToken
+      }
+    })
+
+  }
+
   buscarColeccion(tipo:string, busqueda: string){
 
     const url = `${base_url}/busqueda/coleccion/${tipo}/${busqueda}`;
