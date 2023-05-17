@@ -50,14 +50,10 @@ export class HospitalesComponent implements OnInit, OnDestroy {
   }
 
   actualizarHospital(hospital:Hospital){
-    this.hospitalesService.actualizarHospital(hospital).subscribe(
-      (resp)=>{
-        Swal.fire('Actualizado', hospital.nombre, 'success')
-      },
-      (error)=>{
-        Swal.fire('Error', error.error.errors.nombre.msg, 'error')
-      }
-    );
+    this.hospitalesService.actualizarHospital(hospital).subscribe({
+      complete: () => Swal.fire('Actualizado', hospital.nombre, 'success'),
+      error: error => Swal.fire('Error', error.error.errors.nombre.msg, 'error')
+    });
   }
 
   eliminarHospital(hospital:Hospital){

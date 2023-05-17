@@ -13,6 +13,7 @@ import { HospitalesComponent } from './gestion/hospitales/hospitales.component';
 import { MedicosComponent } from './gestion/medicos/medicos.component';
 import { MedicoComponent } from './gestion/medicos/medico/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { RolGuard } from '../guards/rol.guard';
 
 
 const routes: Routes = [
@@ -27,13 +28,13 @@ const routes: Routes = [
         { path: 'account-settings', component: AccountSettingsComponent,  data: {titulo: 'Tema'}},
         { path: 'rxjs', component: RxjsComponent,  data: {titulo: 'Rjxs'}},
         { path: 'perfil', component: ProfileComponent,  data: {titulo: 'Mi Perfil'}},
-
-        { path: 'usuarios', component: UsuariosComponent,  data: {titulo: 'Usuarios'}},
+        
         { path: 'hospitales', component: HospitalesComponent,  data: {titulo: 'Hospitales'}},
         { path: 'medicos', component: MedicosComponent,  data: {titulo: 'Médicos'}},
         { path: 'medico/:id', component: MedicoComponent,  data: {titulo: 'Detalle Médico'}},
         { path: 'busqueda/:termino', component: BusquedaComponent,  data: {titulo: 'Resultado Búsqueda'}},
-
+        
+        { path: 'usuarios',  canActivate: [RolGuard], component: UsuariosComponent,  data: {titulo: 'Usuarios'}},
       ]
     },
 ];
