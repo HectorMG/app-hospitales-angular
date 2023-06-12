@@ -1,0 +1,12 @@
+version: "3.5"
+
+services:
+
+  hospital_app:
+    build: .
+    container_name: hospital_app
+    volumes:
+      - ./:/app
+    ports:
+      - 4200:4200
+    restart: always
